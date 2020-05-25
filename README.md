@@ -1,3 +1,5 @@
+# Original repo: https://github.com/Damian070/swapi
+
 # SwapiApp
 
 This project was generated using [Nx](https://nx.dev).
