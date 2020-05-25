@@ -1,0 +1,58 @@
+{
+  "npmScope": "swapi-app",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "swapi-app": {
+      "tags": []
+    },
+    "swapi-app-e2e": {
+      "tags": [],
+      "implicitDependencies": ["swapi-app"]
+    },
+    "swapi-planets-overview-planets-overview-lists-planets-overview-list-feature": {
+      "tags": []
+    },
+    "swapi-planets-overview-data-access": {
+      "tags": []
+    },
+    "swapi-planets-overview-planets-overview-details-feature": {
+      "tags": []
+    },
+    "swapi-planets-overview-planets-overview-details-data-access": {
+      "tags": []
+    },
+    "swapi-planets-overview-shell": {
+      "tags": []
+    },
+    "swapi-planets-overview-domain": {
+      "tags": []
+    },
+    "swapi-planets-overview-planets-overview-lists-shared-ui-ui-overview-list-table": {
+      "tags": []
+    },
+    "swapi-planets-overview-planets-overview-lists-shared-ui-ui-planets-overview-list-pagination-ui-overview-list-pagination": {
+      "tags": []
+    },
+    "swapi-shared-ui-bottom-sheet-message": {
+      "tags": []
+    },
+    "swapi-shared-ui-header": {
+      "tags": []
+    },
+    "swapi-planets-overview-planets-overview-details-ui": {
+      "tags": []
+    },
+    "swapi-planets-overview-planets-overview-lists-planets-overview-favourites-list-feature": {
+      "tags": []
+    }
+  }
+}

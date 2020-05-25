@@ -1,0 +1,489 @@
+{
+  "version": 1,
+  "projects": {
+    "swapi-app": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/swapi-app",
+      "sourceRoot": "apps/swapi-app/src",
+      "prefix": "swapi-app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/swapi-app",
+            "index": "apps/swapi-app/src/index.html",
+            "main": "apps/swapi-app/src/main.ts",
+            "polyfills": "apps/swapi-app/src/polyfills.ts",
+            "tsConfig": "apps/swapi-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/swapi-app/src/favicon.ico",
+              "apps/swapi-app/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/swapi-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/swapi-app/src/environments/environment.ts",
+                  "with": "apps/swapi-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "swapi-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "swapi-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "swapi-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/swapi-app/tsconfig.app.json",
+              "apps/swapi-app/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/swapi-app/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/swapi-app/jest.config.js",
+            "tsConfig": "apps/swapi-app/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/swapi-app/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "swapi-app-e2e": {
+      "root": "apps/swapi-app-e2e",
+      "sourceRoot": "apps/swapi-app-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/swapi-app-e2e/cypress.json",
+            "tsConfig": "apps/swapi-app-e2e/tsconfig.e2e.json",
+            "devServerTarget": "swapi-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "swapi-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/swapi-app-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/swapi-app-e2e/**"]
+          }
+        }
+      }
+    },
+    "swapi-planets-overview-data-access": {
+      "root": "libs/swapi/planets-overview/data-access",
+      "sourceRoot": "libs/swapi/planets-overview/data-access/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/swapi/planets-overview/data-access/tsconfig.lib.json",
+              "libs/swapi/planets-overview/data-access/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/swapi/planets-overview/data-access/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/swapi/planets-overview/data-access/jest.config.js",
+            "tsConfig": "libs/swapi/planets-overview/data-access/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "swapi-planets-overview-planets-overview-details-feature": {
+      "root": "libs/swapi/planets-overview/planets-overview-details/feature",
+      "sourceRoot": "libs/swapi/planets-overview/planets-overview-details/feature/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/swapi/planets-overview/planets-overview-details/feature/tsconfig.lib.json",
+              "libs/swapi/planets-overview/planets-overview-details/feature/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/swapi/planets-overview/planets-overview-details/feature/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/swapi/planets-overview/planets-overview-details/feature/jest.config.js",
+            "tsConfig": "libs/swapi/planets-overview/planets-overview-details/feature/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "swapi-planets-overview-planets-overview-details-data-access": {
+      "root": "libs/swapi/planets-overview/planets-overview-details/data-access",
+      "sourceRoot": "libs/swapi/planets-overview/planets-overview-details/data-access/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/swapi/planets-overview/planets-overview-details/data-access/tsconfig.lib.json",
+              "libs/swapi/planets-overview/planets-overview-details/data-access/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/swapi/planets-overview/planets-overview-details/data-access/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/swapi/planets-overview/planets-overview-details/data-access/jest.config.js",
+            "tsConfig": "libs/swapi/planets-overview/planets-overview-details/data-access/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "swapi-planets-overview-shell": {
+      "root": "libs/swapi/planets-overview/shell",
+      "sourceRoot": "libs/swapi/planets-overview/shell/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/swapi/planets-overview/shell/tsconfig.lib.json",
+              "libs/swapi/planets-overview/shell/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/swapi/planets-overview/shell/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/swapi/planets-overview/shell/jest.config.js",
+            "tsConfig": "libs/swapi/planets-overview/shell/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "swapi-planets-overview-domain": {
+      "root": "libs/swapi/planets-overview/domain",
+      "sourceRoot": "libs/swapi/planets-overview/domain/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/swapi/planets-overview/domain/tsconfig.lib.json",
+              "libs/swapi/planets-overview/domain/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/swapi/planets-overview/domain/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/swapi/planets-overview/domain/jest.config.js",
+            "tsConfig": "libs/swapi/planets-overview/domain/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "swapi-planets-overview-planets-overview-lists-shared-ui-ui-overview-list-table": {
+      "root": "libs/swapi/planets-overview/planets-overview-lists/shared/ui/ui-overview-list-table",
+      "sourceRoot": "libs/swapi/planets-overview/planets-overview-lists/shared/ui/ui-overview-list-table/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/swapi/planets-overview/planets-overview-lists/shared/ui/ui-overview-list-table/tsconfig.lib.json",
+              "libs/swapi/planets-overview/planets-overview-lists/shared/ui/ui-overview-list-table/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/swapi/planets-overview/planets-overview-lists/shared/ui/ui-overview-list-table/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/swapi/planets-overview/planets-overview-lists/shared/ui/ui-overview-list-table/jest.config.js",
+            "tsConfig": "libs/swapi/planets-overview/planets-overview-lists/shared/ui/ui-overview-list-table/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "swapi-planets-overview-planets-overview-lists-shared-ui-ui-planets-overview-list-pagination-ui-overview-list-pagination": {
+      "root": "libs/swapi/planets-overview/planets-overview-lists/shared/ui/ui-planets-overview-list-pagination/ui-overview-list-pagination",
+      "sourceRoot": "libs/swapi/planets-overview/planets-overview-lists/shared/ui/ui-planets-overview-list-pagination/ui-overview-list-pagination/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/swapi/planets-overview/planets-overview-lists/shared/ui/ui-planets-overview-list-pagination/ui-overview-list-pagination/tsconfig.lib.json",
+              "libs/swapi/planets-overview/planets-overview-lists/shared/ui/ui-planets-overview-list-pagination/ui-overview-list-pagination/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/swapi/planets-overview/planets-overview-lists/shared/ui/ui-planets-overview-list-pagination/ui-overview-list-pagination/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/swapi/planets-overview/planets-overview-lists/shared/ui/ui-planets-overview-list-pagination/ui-overview-list-pagination/jest.config.js",
+            "tsConfig": "libs/swapi/planets-overview/planets-overview-lists/shared/ui/ui-planets-overview-list-pagination/ui-overview-list-pagination/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "swapi-shared-ui-bottom-sheet-message": {
+      "root": "libs/swapi/shared/ui-bottom-sheet-message",
+      "sourceRoot": "libs/swapi/shared/ui-bottom-sheet-message/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/swapi/shared/ui-bottom-sheet-message/tsconfig.lib.json",
+              "libs/swapi/shared/ui-bottom-sheet-message/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/swapi/shared/ui-bottom-sheet-message/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/swapi/shared/ui-bottom-sheet-message/jest.config.js",
+            "tsConfig": "libs/swapi/shared/ui-bottom-sheet-message/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "swapi-shared-ui-header": {
+      "root": "libs/swapi/shared/ui-header",
+      "sourceRoot": "libs/swapi/shared/ui-header/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/swapi/shared/ui-header/tsconfig.lib.json",
+              "libs/swapi/shared/ui-header/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/swapi/shared/ui-header/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/swapi/shared/ui-header/jest.config.js",
+            "tsConfig": "libs/swapi/shared/ui-header/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "swapi-planets-overview-planets-overview-details-ui": {
+      "root": "libs/swapi/planets-overview/planets-overview-details/ui",
+      "sourceRoot": "libs/swapi/planets-overview/planets-overview-details/ui/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/swapi/planets-overview/planets-overview-details/ui/tsconfig.lib.json",
+              "libs/swapi/planets-overview/planets-overview-details/ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/swapi/planets-overview/planets-overview-details/ui/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/swapi/planets-overview/planets-overview-details/ui/jest.config.js",
+            "tsConfig": "libs/swapi/planets-overview/planets-overview-details/ui/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "swapi-planets-overview-planets-overview-lists-planets-overview-favourites-list-feature": {
+      "root": "libs/swapi/planets-overview/planets-overview-lists/planets-overview-favourites-list/feature",
+      "sourceRoot": "libs/swapi/planets-overview/planets-overview-lists/planets-overview-favourites-list/feature/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/swapi/planets-overview/planets-overview-lists/planets-overview-favourites-list/feature/tsconfig.lib.json",
+              "libs/swapi/planets-overview/planets-overview-lists/planets-overview-favourites-list/feature/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/swapi/planets-overview/planets-overview-lists/planets-overview-favourites-list/feature/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/swapi/planets-overview/planets-overview-lists/planets-overview-favourites-list/feature/jest.config.js",
+            "tsConfig": "libs/swapi/planets-overview/planets-overview-lists/planets-overview-favourites-list/feature/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "swapi-planets-overview-planets-overview-lists-planets-overview-list-feature": {
+      "root": "libs/swapi/planets-overview/planets-overview-lists/planets-overview-list/feature",
+      "sourceRoot": "libs/swapi/planets-overview/planets-overview-lists/planets-overview-list/feature/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/swapi/planets-overview/planets-overview-lists/planets-overview-list/feature/tsconfig.lib.json",
+              "libs/swapi/planets-overview/planets-overview-lists/planets-overview-list/feature/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/swapi/planets-overview/planets-overview-lists/planets-overview-list/feature/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/swapi/planets-overview/planets-overview-lists/planets-overview-list/feature/jest.config.js",
+            "tsConfig": "libs/swapi/planets-overview/planets-overview-lists/planets-overview-list/feature/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "swapi-app"
+}

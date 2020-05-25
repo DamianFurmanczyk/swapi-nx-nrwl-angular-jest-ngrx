@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+
+.mat-spinner {
+  margin: 25% auto;
+}
+
+.mat-icon {
+  cursor: pointer;
+}

@@ -1,0 +1,8 @@
+<ui-planets-overview-details-card
+  [planetDetails]="planetsDetails$ | async"
+  [error]="error$ | async"
+  [loading]="loading$ | async"
+  [favourites]="favourites$ | async"
+  (toggleFavouriteStatus)="onTogglePlanetsFavouriteStatus($event)"
+>
+</ui-planets-overview-details-card>
